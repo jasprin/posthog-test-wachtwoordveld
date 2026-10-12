@@ -1,0 +1,154 @@
+/* Overgenomen uit Claude Design: "Inlogscherm PGO" (varianten 1a en 1b). */
+:root {
+  --achtergrond: #e9e8e4;
+  --kaart: oklch(0.985 0.004 90);
+  --tekst: oklch(0.25 0.015 250);
+  --tekst-zacht: oklch(0.4 0.015 250);
+  --icoon: oklch(0.35 0.015 250);
+  --rand: oklch(0.55 0.015 250);
+  --accent: oklch(0.42 0.1 235);
+  --accent-hover: oklch(0.36 0.1 235);
+  --link-hover: oklch(0.32 0.1 235);
+  --oog-hover: oklch(0.94 0.008 235);
+}
+
+* { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 16px;
+  background: var(--achtergrond);
+  color: var(--tekst);
+  font-family: 'Atkinson Hyperlegible', system-ui, sans-serif;
+}
+
+a { color: var(--accent); }
+a:hover { color: var(--link-hover); }
+
+.kaart {
+  width: 100%;
+  max-width: 390px;
+  min-height: 760px;
+  padding: 56px 24px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background: var(--kaart);
+  border-radius: 24px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .08);
+}
+
+@media (max-width: 480px) {
+  body { padding: 0; }
+  .kaart { max-width: none; min-height: 100vh; border-radius: 0; box-shadow: none; }
+}
+
+/* Kop */
+header { display: flex; flex-direction: column; gap: 12px; }
+
+.merk { display: flex; align-items: center; gap: 10px; }
+.merk-logo {
+  display: block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+.merk-naam { font-size: 22px; font-weight: 700; letter-spacing: -0.01em; }
+
+h1 { margin: 0; font-size: 28px; line-height: 1.2; font-weight: 700; }
+
+.intro, .laden {
+  margin: 0;
+  font-size: 17px;
+  line-height: 1.5;
+  color: var(--tekst-zacht);
+  text-wrap: pretty;
+}
+
+/* Formulier */
+form { display: flex; flex-direction: column; gap: 24px; }
+
+.veld { display: flex; flex-direction: column; gap: 8px; }
+
+label { font-size: 17px; font-weight: 700; }
+
+input {
+  height: 52px;
+  padding: 0 14px;
+  font: inherit;
+  font-size: 18px;
+  color: inherit;
+  background: #fff;
+  border: 2px solid var(--rand);
+  border-radius: 8px;
+  outline: none;
+}
+input:focus {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-color: var(--accent);
+}
+
+.wachtwoordveld { position: relative; display: flex; }
+.wachtwoordveld input { flex: 1; min-width: 0; }
+/* Alleen ruimte voor het oog vrijhouden als het oog er is (variant test). */
+.wachtwoordveld:has(.oog:not([hidden])) input { padding-right: 56px; }
+
+.oog {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  color: var(--icoon);
+  cursor: pointer;
+}
+.oog:hover { background: var(--oog-hover); }
+.oog:focus-visible { outline: 3px solid var(--accent); outline-offset: 0; }
+/* De streep door het oog verschijnt als het wachtwoord zichtbaar is. */
+.oog .streep { display: none; }
+.oog[aria-pressed="true"] .streep { display: inline; }
+
+.knop {
+  height: 52px;
+  margin-top: 8px;
+  font: inherit;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  background: var(--accent);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.knop:hover { background: var(--accent-hover); }
+.knop:focus-visible { outline: 3px solid var(--tekst); outline-offset: 3px; }
+
+.waarschuwing {
+  margin: -8px 0 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--tekst-zacht);
+}
+
+.vergeten {
+  align-self: flex-start;
+  padding: 10px 0;
+  font-size: 17px;
+  text-underline-offset: 3px;
+}
+.vergeten:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 2px; }

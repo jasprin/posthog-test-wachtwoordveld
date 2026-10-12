@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ingelogd – Helder (prototype)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="kaart">
+    <header>
+      <div class="merk"><span class="merk-logo" aria-hidden="true"></span><span class="merk-naam">Helder</span></div>
+      <h1>Je bent ingelogd</h1>
+      <p class="intro">(dit is een prototype)</p>
+    </header>
+  </main>
+
+  <!-- PostHog laadt hier ook, zodat de survey (aangemaakt in PostHog) kan verschijnen. -->
+  <script src="config.js"></script>
+  <script src="posthog.js"></script>
+  <script>startPostHog();</script>
+</body>
+</html>
